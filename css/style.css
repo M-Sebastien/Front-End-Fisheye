@@ -1,6 +1,6 @@
 /* ========== IMPORTS ========== */
 
-@import url("photographer.css");
+/*@import url("photographer.css");*/
 @import url("normalize.css");
 
 /* ========== CSS VARIABLES ========== */
@@ -54,6 +54,9 @@ h1 {
 }
 
 .photographer_section article a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
 }
 
