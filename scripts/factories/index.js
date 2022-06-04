@@ -16,13 +16,16 @@ function photographersFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
-        setAttributes(article, {"id": id, "aria-label": `Link to ${name}'s page`, "tabindex": "0"});
+        setAttributes(article, {"id": id});
         
         const img = document.createElement( 'img' );
-        setAttributes(img, {"src": picture, "alt": `profile picture of ${name}`, "tabindex": "0"})
-        
+        setAttributes(img, {"src": picture, "alt": ``})
+
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
+
+        const subText = document.createElement( 'div' );
+        setAttributes(subText, {"class": "subtext", "tabindex": 0})
         
         const h3 = document.createElement( 'h3');
         h3.textContent = `${city}, ${country}`;
@@ -39,9 +42,10 @@ function photographersFactory(data) {
         article.appendChild(anchor);
         anchor.appendChild(img);
         anchor.appendChild(h2);
-        article.appendChild(h3);
-        article.appendChild(citeTagLine);
-        article.appendChild(paraPrice);
+        article.appendChild(subText);
+        subText.appendChild(h3);
+        subText.appendChild(citeTagLine);
+        subText.appendChild(paraPrice);
         
         return (article);
     }

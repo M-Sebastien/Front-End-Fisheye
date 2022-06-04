@@ -8,7 +8,8 @@ function setAttributes(el, attrs) {
 
 /* ========== PHOTOGRAPHER.JS ========== */
 
-// Generates photographer's main page
+// Generates photographer's card
+
 function photographerFactory(data) {
     const { name, city, country, tagline, portrait } = data;
     
@@ -21,7 +22,6 @@ function photographerFactory(data) {
 
         const photoName = document.createElement( 'h1' );
         photoName.textContent = name;
-        photoName.setAttribute("tabindex", 0);
 
         const photoLocation = document.createElement( 'h2' );
         photoLocation.textContent = `${city}, ${country}`;
@@ -31,7 +31,7 @@ function photographerFactory(data) {
 
         const picture = `assets/FishEye_Photos/Sample Photos/Photographers ID Photos/${portrait}`;
         const img = document.createElement( 'img' );
-        setAttributes(img, {"src": picture, "alt": name, "tabindex": 0})
+        setAttributes(img, {"src": picture})
 
         photoHeader.appendChild(photoBio);
         photoBio.appendChild(photoName);
@@ -56,7 +56,7 @@ function galleryFactory(data) {
         const article = document.createElement( 'article' );
         const link = document.createElement( 'a' );
         const media = document.createElement( image ?'img': 'video' );
-        setAttributes(media, {"src": url, "alt": title, "tabindex": 0});
+        setAttributes(media, {"src": url, "alt": `${title} in full page`, "tabindex": 0});
         media.classList.add('article-media');
         media.id = id;
 
@@ -68,15 +68,14 @@ function galleryFactory(data) {
 
         const totalLikes = document.createElement( 'div' );
         totalLikes.classList.add('likes');
+        setAttributes(totalLikes, {"tabindex": 0, "aria-label": `add or remove a like`})
         
-        const nbrLikes = document.createElement( 'span');
+        const nbrLikes = document.createElement( 'span' );
         nbrLikes.classList.add('nbrLikes');
-        nbrLikes.setAttribute("alt", "Likes count");
         nbrLikes.textContent = likes;
         
-        const heart_fas = document.createElement( 'span');
+        const heart_fas = document.createElement( 'i' );
         heart_fas.classList.add('fas', 'fa-heart');
-        setAttributes(heart_fas, {"alt": "heart icon", "aria-label": "likes", "tabindex": 0});
         
         article.appendChild(link);
         link.appendChild(media);
@@ -123,8 +122,3 @@ function asidePhot(arrayGallery, price) {
     asideTotalLikes.appendChild(asideHeart);
     photSumn.appendChild(asidePrice);
 }
-
-
-
-
-

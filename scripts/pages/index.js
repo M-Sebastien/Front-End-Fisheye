@@ -19,12 +19,25 @@ async function displayData(photographers) {
     });
 };
 
+// Space bar kewdown acts like click
+function findAnchors() {
+    const anchors = document.querySelectorAll("a");
+    anchors.forEach(anchor => {
+        anchor.addEventListener("keydown", (e) => {
+            if (e.key === " ") {
+                e.preventDefault();
+                anchor.click();
+            }
+        })
+    })
+};
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     // console.log(photographers); ==> returns an array of objects
     displayData(photographers);
+    findAnchors();
 };
 
 init();
-

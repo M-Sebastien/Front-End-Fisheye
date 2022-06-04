@@ -4,8 +4,6 @@ const body = document.getElementById("body");
 
 function displayModal() {
 	modal.style.display = "block";
-  modal.setAttribute("aria-hidden", "false");
-  main.setAttribute("aria-hidden", "true");
   body.classList.add("no-scroll");
 
   const photName = document.querySelector('h1');
@@ -38,8 +36,6 @@ function displayModal() {
 
 function closeModal() {
   modal.style.display = "none";
-  modal.getAttribute("aria-hidden", "true");
-  main.getAttribute("aria-hidden", "false");
   body.classList.remove("no-scroll");
   document.querySelector(".contact_button").focus();
 }

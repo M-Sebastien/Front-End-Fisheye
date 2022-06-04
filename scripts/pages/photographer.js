@@ -101,7 +101,7 @@ function Likes(arrayGallery) {
     });
 
     likes.forEach(element => {element.addEventListener('keydown', e => {
-        if (e.code == "Enter") {
+        if (e.code == "Enter" || e.code == "Space") {
             
             let nbrLikes = element.querySelector(".nbrLikes");
             let asideLikes = document.querySelector('.asideLikes');
@@ -113,12 +113,14 @@ function Likes(arrayGallery) {
                 mediaLikes.likes--;
                 mediaLikes.like = "";
                 asideLikes.textContent--;
+                e.preventDefault();
             }
             else {
                 nbrLikes.textContent++;
                 asideLikes.textContent++;
                 mediaLikes.likes++;
                 mediaLikes.like = "liked";
+                e.preventDefault();
             }
         }      
         
@@ -209,6 +211,7 @@ function openLightbox(arrayGallery) {
     const mediaName = document.querySelector('.lightbox__media__name');
     const links = Array.from(document.querySelectorAll('.article-media'));
     const lightboxDOM = document.querySelector('.lightbox');
+    const lightboxPrev = document.querySelector('.lightbox__prev');
 
     lightboxDOM.style.display = "none";
 
@@ -238,6 +241,7 @@ function openLightbox(arrayGallery) {
             lightboxDOM.style.display = "block";
             mediaVideo.style.display = "none";
             mediaImg.style.display = "block";
+            lightboxPrev.focus();
         }
         
     }
@@ -288,6 +292,8 @@ function nextMedia() {
             mediaName.textContent = this[i+1].title;
             mediaVideo.style.display = "none";
             mediaImg.style.display = "block";
+            const lightboxPrev = document.querySelector('.lightbox__prev');
+            lightboxPrev.focus();
         } 
     }
 
@@ -313,6 +319,8 @@ function nextMedia() {
             mediaName.textContent = this[j+1].title;
             mediaVideo.style.display = "none";
             mediaImg.style.display = "block";
+            const lightboxPrev = document.querySelector('.lightbox__prev');
+            lightboxPrev.focus();
         } 
     }
 
@@ -341,6 +349,7 @@ function prevMedia() {
             mediaName.textContent = this[i-1].title;
             mediaImg.style.display = "none";
             mediaVideo.style.display = "block";
+            mediaVideo.focus();
         }
         if (this[i-1].hasOwnProperty("image")) {
             mediaVideo.id = "";
@@ -349,6 +358,8 @@ function prevMedia() {
             mediaName.textContent = this[i-1].title;
             mediaVideo.style.display = "none";
             mediaImg.style.display = "block";
+            const lightboxPrev = document.querySelector('.lightbox__prev');
+            lightboxPrev.focus();
         } 
     }
 
@@ -367,6 +378,7 @@ function prevMedia() {
             mediaName.textContent = this[j-1].title;
             mediaImg.style.display = "none";
             mediaVideo.style.display = "block";
+            mediaVideo.focus();
         }
         if (this[j-1].hasOwnProperty("image")) {
             mediaImg.setAttribute("src", this[j-1].url);
@@ -374,6 +386,8 @@ function prevMedia() {
             mediaName.textContent = this[j-1].title;
             mediaVideo.style.display = "none";
             mediaImg.style.display = "block";
+            const lightboxPrev = document.querySelector('.lightbox__prev');
+            lightboxPrev.focus();
         } 
     }
 }
